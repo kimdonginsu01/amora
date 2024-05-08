@@ -8,10 +8,26 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        "play-fair": "var(--font-play-fair)",
+        "red-hat": "var(--font-red-hat)",
+      },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "hero-bg": "url('../public/hero image.png')",
+      },
+      padding: {
+        "hero-bg": "var(--hero-bg)",
+        section: "128px",
+        "button-x": "32px",
+        "button-y": "10px",
+      },
+      minHeight: {
+        header: "100px",
+      },
+      colors: {
+        primary: "var(--primary)",
+        "btn-primary": "var(--primary)",
+        "btn-light": "#fff",
       },
     },
   },
