@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Red_Hat_Display } from "next/font/google";
 import "../globals.css";
+import Header from "./components/Header";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body
         className={`${playfair.className} ${playfair.variable} ${redHat.variable}`}
       >
+        <Header />
         <main>{children}</main>
       </body>
     </html>

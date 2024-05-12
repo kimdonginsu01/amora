@@ -1,11 +1,13 @@
-import Header from "./components/Header";
+import AboutUs from "./components/AboutUs";
 import Hero from "./components/Hero";
+import Offer from "./components/Offer";
 
 export default function Home() {
   return (
     <>
-      <Header />
       <Hero />
+      <AboutUs />
+      <Offer />
     </>
   );
 }

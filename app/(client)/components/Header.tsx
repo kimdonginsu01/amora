@@ -47,7 +47,7 @@ const Header = () => {
         ease-in-out duration-300 
         ${!hideOnScroll ? "-translate-y-full" : ""}`}
     >
-      <div className="flex justify-between items-center px-section min-h-header">
+      <div className="flex justify-between items-center px-section-x min-h-header bg-gradient-to-b from-primary-light">
         <Link href="/">
           <Image src={logo} alt="Amora" />
         </Link>

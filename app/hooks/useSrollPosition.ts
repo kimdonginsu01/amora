@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useRef, useLayoutEffect, EffectCallback, DependencyList } from "react";
+import { DependencyList, useLayoutEffect, useRef } from "react";
 
 const isBrowser: boolean = typeof window !== `undefined`;
 

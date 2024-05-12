@@ -6,7 +6,7 @@ interface Props
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   children: ReactNode;
-  variant: "primary" | "light" | "outline";
+  variant: "primary" | "light" | "outline" | "dark";
 }
 
 const Button = ({ children, className, variant, ...props }: Props) => {
@@ -21,17 +21,33 @@ const Button = ({ children, className, variant, ...props }: Props) => {
   );
 };
 
-const buttonVariants = cva("font-red-hat text-2xl px-button-x py-button-y", {
-  variants: {
-    variant: {
-      primary: "bg-primary text-white",
-      light: "bg-white text-black",
-      outline: "border border-white",
+const buttonVariants = cva(
+  `
+  font-red-hat
+  text-2xl
+  px-button-x
+  py-button-y
+  transition-all
+  ease-in-out
+  duration-300
+  border
+  shadow-xl
+  `,
+  {
+    variants: {
+      variant: {
+        primary:
+          "bg-primary text-white hover:border-transparent hover:bg-transparent hover:text-black",
+        light:
+          "border-white bg-white text-black hover:bg-primary hover:text-white hover:border-primary",
+        dark: "border-light-dark bg-light-dark text-primary hover:bg-primary hover:border-primary hover:text-white",
+        outline: "border-white hover:bg-white hover:text-black",
+      },
     },
-  },
-  defaultVariants: {
-    variant: "primary",
-  },
-});
+    defaultVariants: {
+      variant: "primary",
+    },
+  }
+);
 
 export default Button;

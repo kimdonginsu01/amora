@@ -17,7 +17,8 @@ const config: Config = {
       },
       padding: {
         "hero-bg": "var(--hero-bg)",
-        section: "128px",
+        "section-x": "128px",
+        "section-y": "128px",
         "button-x": "32px",
         "button-y": "10px",
       },
@@ -26,8 +27,26 @@ const config: Config = {
       },
       colors: {
         primary: "var(--primary)",
-        "btn-primary": "var(--primary)",
-        "btn-light": "#fff",
+        dark: "#0E0E0E",
+        "primary-light": "rgb(162 136 105 / 50%)",
+        "light-dark": "#2A2A2A",
+      },
+      fontSize: {
+        "xl-32": ["32px", { fontWeight: 500, letterSpacing: "0.08em" }],
+        "xl-42": ["42px", { fontWeight: 500, letterSpacing: "0.08em" }],
+      },
+      borderRadius: {
+        "68": "68px",
+      },
+      textColor: {
+        title: "#FEFEFE99",
+        "light-dark": "#A6A6A6",
+      },
+      letterSpacing: {
+        base: "0.08em",
+      },
+      borderColor: {
+        "offer-card": "#3F3F42",
       },
     },
   },
