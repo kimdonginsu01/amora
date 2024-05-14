@@ -25,8 +25,8 @@ const StyledImage = () => {
       parentImgRef.current
     ) {
       const parentHeight = parentImgRef.current?.clientHeight;
-      upperImgRef.current.style.height = `${parentHeight * 0.7}px`;
-      lowerImgRef.current.style.height = `${parentHeight * 0.25}px`;
+      upperImgRef.current.style.height = `${parentHeight * 0.75}px`;
+      lowerImgRef.current.style.height = `${parentHeight * 0.20}px`;
     }
   }, [isLoaded, width]);
 

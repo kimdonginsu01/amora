@@ -30,6 +30,8 @@ const config: Config = {
         dark: "#0E0E0E",
         "primary-light": "rgb(162 136 105 / 50%)",
         "light-dark": "#2A2A2A",
+        "section-description": "#222222",
+        divider: "#A288696B",
       },
       fontSize: {
         "xl-32": ["32px", { fontWeight: 500, letterSpacing: "0.08em" }],

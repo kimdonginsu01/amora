@@ -5,6 +5,7 @@ import logo from "@/public/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import HorizontalDevider from "./ui/HorizontalDevider";
 
 const menuItems = [
   {
@@ -26,7 +27,7 @@ const menuItems = [
 ];
 
 const Header = () => {
-  const [hideOnScroll, setHideOnScroll] = useState(false);
+  const [hideOnScroll, setHideOnScroll] = useState(true);
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
@@ -63,7 +64,7 @@ const Header = () => {
           ))}
         </div>
       </div>
-      <div className="h-[1px] bg-gradient-to-r from-transparent via-primary"></div>
+      <HorizontalDevider variant="primary" />
     </div>
   );
 };
