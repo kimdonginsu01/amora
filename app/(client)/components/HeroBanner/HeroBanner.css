@@ -1,0 +1,12 @@
+.bg-img-hero-banner {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 0.3) 0%,
+    rgba(11, 11, 14, 0) 100%
+  );
+}
+
+.title-about-us {
+  transform: translate(50%, 00%);
+}
