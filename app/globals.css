@@ -5,18 +5,38 @@
 :root {
   --background: #fff;
   --primary: #a28869;
+  --secondary: #fff7f2;
   --hero-ratio: 0.57;
   --hero-bg: calc(var(--hero-ratio) * 100vw);
+  --service-card-slide-size: 45%;
+  --testimonial-card-slide-size: 20%
 }
 
 body {
   background: var(--background);
+}
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  button + button {
+    @apply ml-6;
+  }
+}
+
+@layer components {
   .embla {
     overflow: hidden;
     margin: auto;
     --slide-spacing: 1rem;
-    --slide-size: 45%;
+  }
+  .embla--service {
+    --slide-size: var(--service-card-slide-size);
+  }
+  .embla--testimonial {
+    --slide-size: var(--testimonial-card-slide-size);
   }
   .embla__container {
     backface-visibility: hidden;
@@ -31,15 +51,5 @@ body {
   }
   .embla__slide__number {
     backface-visibility: hidden;
-  }
-}
-
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
-  button + button {
-    @apply ml-6;
   }
 }

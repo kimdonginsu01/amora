@@ -25,7 +25,7 @@ type PropType = {
 export function EmblaCarousel(props: PropType) {
   const { slides, options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
-    Autoplay({ delay: 4000 }),
+    Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true }),
   ]);
   const tweenFactor = useRef(0);
   const tweenNodes = useRef<HTMLElement[]>([]);
@@ -96,7 +96,7 @@ export function EmblaCarousel(props: PropType) {
   }, [emblaApi, tweenScale]);
 
   return (
-    <div className="embla" ref={emblaRef}>
+    <div className="embla embla--service" ref={emblaRef}>
       <div className="embla__container">
         {slides.map((item, index) => (
           <div className="embla__slide" key={index}>

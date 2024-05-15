@@ -1,4 +1,5 @@
 import ServiceCard from "./ServiceCard";
+import Button from "./ui/Button";
 import SectionHeading from "./ui/SectionHeading";
 
 const Service = () => {
@@ -13,6 +14,10 @@ const Service = () => {
       <div className="mt-12 grid grid-cols-2 gap-5">
         <ServiceCard />
         <ServiceCard />
+      </div>
+
+      <div className="flex justify-center mt-12">
+        <Button variant="primary">All Services</Button>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ interface Props
   variant: "primary" | "dark";
 }
 
-const HorizontalDevider = ({ className, variant }: Props) => {
+const HorizontalDivider = ({ className, variant }: Props) => {
   return <div className={cn(deviderVariants({ variant, className }))}></div>;
 };
 
@@ -24,4 +24,4 @@ const deviderVariants = cva("h-[1px] ", {
   },
 });
 
-export default HorizontalDevider;
+export default HorizontalDivider;

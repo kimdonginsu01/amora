@@ -3,7 +3,7 @@ import React, { HTMLAttributes } from "react";
 import imgPath from "@/public/offer_card_1.png";
 import Button from "./ui/Button";
 import cn from "../utils/cn";
-import HorizontalDevider from "./ui/HorizontalDevider";
+import HorizontalDevider from "./ui/HorizontalDivider";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   active?: boolean;

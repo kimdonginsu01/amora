@@ -15,10 +15,12 @@ const config: Config = {
       backgroundImage: {
         "hero-bg": "url('../public/hero image.png')",
       },
-      padding: {
-        "hero-bg": "var(--hero-bg)",
+      spacing: {
         "section-x": "128px",
         "section-y": "128px",
+      },
+      padding: {
+        "hero-bg": "var(--hero-bg)",
         "button-x": "32px",
         "button-y": "10px",
       },
@@ -27,6 +29,7 @@ const config: Config = {
       },
       colors: {
         primary: "var(--primary)",
+        secondary: "var(--secondary)",
         dark: "#0E0E0E",
         "primary-light": "rgb(162 136 105 / 50%)",
         "light-dark": "#2A2A2A",
