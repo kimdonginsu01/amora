@@ -7,12 +7,12 @@ import { PhoneIcon, WhatsAppIcon } from "./Icons";
 
 const ServiceCard = () => {
   return (
-    <div>
+    <div className="border border-offer-card/40">
       <Image alt="service" src={imgPath} style={{ width: "100%" }} />
-      <div>
-        <h2 className="text-primary">Lomi Lomi Massage</h2>
-        <HorizontalDevider variant="dark" />
-        <div className="flex font-red-hat">
+      <div className="p-8">
+        <h2 className="text-primary text-2xl font-medium">Lomi Lomi Massage</h2>
+        <HorizontalDevider className="mt-4" variant="dark" />
+        <div className="flex font-red-hat text-light-dark">
           <p>
             Book a 60-minute Swedish massage for 390 AED and receive an
             additional 15 minutes free.
@@ -20,11 +20,11 @@ const ServiceCard = () => {
           <div>
             <div className="text-nowrap">
               <span>60 min</span>
-              <span>690AED</span>
+              <span className="font-bold">690AED</span>
             </div>
             <div className="text-nowrap">
               <span>60 min</span>
-              <span>690AED</span>
+              <span className="font-bold">690AED</span>
             </div>
           </div>
         </div>
