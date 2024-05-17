@@ -30,17 +30,16 @@ const menuItems = [
 ];
 
 const Header = () => {
-  const [hideOnScroll, setHideOnScroll] = useState(true);
+  const [hideOnScroll, setHideOnScroll] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenMenu = () => {
-    console.log("aaaa");
     setIsOpen(true);
   };
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
-      const isShow = currPos.y > prevPos.y;
+      const isShow = currPos.y > prevPos.y || currPos.y >= 0;
       if (isShow !== hideOnScroll) setHideOnScroll(isShow);
     },
     [hideOnScroll]
@@ -55,17 +54,20 @@ const Header = () => {
         left-0
         w-full
         transition-all
-        ease-in-out duration-300 
+        ease-in-out duration-300
+        bg-gradient-to-b
+        from-primary-light
         ${!hideOnScroll ? "-translate-y-full" : ""}`}
     >
       <div
         className={cn(`
+          max-w-content
+          mx-auto
           flex
           justify-center md:justify-between
           items-center
           header-mobile md:min-h-header
-          bg-gradient-to-b
-          from-primary-light
+          px-section-x
         `)}
       >
         <Link href="/">
@@ -91,7 +93,12 @@ const Header = () => {
       >
         <MenuIcon className="w-5" />
       </div>
-      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} menuItems={menuItems} className="md:hidden" />
+      <MobileMenu
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        menuItems={menuItems}
+        className="md:hidden"
+      />
     </div>
   );
 };

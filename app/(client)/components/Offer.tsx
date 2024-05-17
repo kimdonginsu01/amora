@@ -3,6 +3,7 @@ import imgPath from "@/public/offer_card_1.png";
 import imgPath2 from "@/public/offer_card_2.png";
 import imgPath3 from "@/public/offer_card_3.png";
 import SectionHeading from "./ui/SectionHeading";
+import SectionWrapper from "./ui/SectionWrapper";
 
 const slides = [
   {
@@ -37,19 +38,19 @@ const slides = [
 
 const Offer = () => {
   return (
-    <div className="bg-dark px-section-x py-section-y">
+    <SectionWrapper variant="dark">
       <SectionHeading
-        className="text-light-dark"
-        subHeading="GET A DISCOUNT"
-        heading="Special Offers"
-        description="Are you looking for affordable massage prices in Dubai? Explore our
+          className="text-light-dark"
+          subHeading="GET A DISCOUNT"
+          heading="Special Offers"
+          description="Are you looking for affordable massage prices in Dubai? Explore our
           current promotions and discover deals to suit your budget."
-      />
+        />
 
-      <div className="mt-9">
-        <EmblaCarousel slides={slides} options={{ loop: true }} />
-      </div>
-    </div>
+        <div className="mt-9">
+          <EmblaCarousel slides={slides} options={{ loop: true }} />
+        </div>
+    </SectionWrapper>
   );
 };
 

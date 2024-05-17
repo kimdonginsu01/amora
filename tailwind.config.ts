@@ -16,10 +16,17 @@ const config: Config = {
         "hero-bg": "url('../public/hero image.png')",
       },
       spacing: {
-        "section-x": "128px",
-        "section-y": "128px",
+        content: "1256px",
+        "section-x": "64px",
+        "section-y": "64px",
         header: "100px",
         "header-mobile": "80px",
+        unset: "unset",
+        "100svh": "100svh",
+        "service-slide": "100%",
+        "service-slide-sm": "45%",
+        "testimonial-slide": "60%",
+        "testimonial-slide-sm": "20%",
       },
       padding: {
         "hero-bg": "var(--hero-bg)",
@@ -52,6 +59,15 @@ const config: Config = {
       },
       borderColor: {
         "offer-card": "#3F3F42",
+      },
+      keyframes: {
+        slideIn: {
+          "0%": { transform: "translateY(50%)" },
+          "100%": { transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        slideIn: "slideIn .1s ease-in-out",
       },
     },
   },

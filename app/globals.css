@@ -9,7 +9,7 @@
   --hero-ratio: 0.57;
   --hero-bg: calc(var(--hero-ratio) * 100vw);
   --service-card-slide-size: 45%;
-  --testimonial-card-slide-size: 20%
+  --testimonial-card-slide-size: 50%
 }
 
 body {
@@ -31,9 +31,6 @@ body {
     overflow: hidden;
     margin: auto;
     --slide-spacing: 1rem;
-  }
-  .embla--service {
-    --slide-size: var(--service-card-slide-size);
   }
   .embla--testimonial {
     --slide-size: var(--testimonial-card-slide-size);

@@ -24,14 +24,15 @@ const Button = ({ children, className, variant, ...props }: Props) => {
 const buttonVariants = cva(
   `
   font-red-hat
-  text-2xl
-  px-button-x
-  py-button-y
+  text-lg md:text-2xl
+  px-4 md:px-button-x
+  py-2 md:py-button-y
   transition-all
   ease-in-out
   duration-300
   border
   shadow-xl
+  min-w-fit
   `,
   {
     variants: {
