@@ -131,3 +131,42 @@ export const XIcon = ({ className }: Props) => (
     />
   </svg>
 );
+
+export const MenuIcon = ({ className }: Props) => (
+  <svg
+    width="41"
+    height="31"
+    viewBox="0 0 41 31"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+  >
+    <path
+      d="M20.5 28H38M3 15.5H38M3 3H38"
+      stroke="white"
+      strokeWidth="5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const CloseIcon = ({ className, ...props}: Props) => (
+  <svg
+    width="51"
+    height="51"
+    viewBox="0 0 51 51"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    {...props}
+  >
+    <path
+      d="M48.0979 48.069L25.5979 25.569M25.5979 25.569L3.09795 3.06904M25.5979 25.569L48.0982 3.06904M25.5979 25.569L3.09795 48.0693"
+      stroke="black"
+      strokeWidth="5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

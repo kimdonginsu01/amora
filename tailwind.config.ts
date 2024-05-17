@@ -18,15 +18,15 @@ const config: Config = {
       spacing: {
         "section-x": "128px",
         "section-y": "128px",
+        header: "100px",
+        "header-mobile": "80px",
       },
       padding: {
         "hero-bg": "var(--hero-bg)",
         "button-x": "32px",
         "button-y": "10px",
       },
-      minHeight: {
-        header: "100px",
-      },
+      minHeight: {},
       colors: {
         primary: "var(--primary)",
         secondary: "var(--secondary)",

@@ -1,11 +1,14 @@
 "use client";
 
 import { useScrollPosition } from "@/app/hooks/useSrollPosition";
-import logo from "@/public/logo.png";
+import logo from "@/public/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import HorizontalDevider from "./ui/HorizontalDivider";
+import cn from "../utils/cn";
+import { MenuIcon } from "./Icons";
+import MobileMenu from "./MobileMenu";
 
 const menuItems = [
   {
@@ -28,6 +31,12 @@ const menuItems = [
 
 const Header = () => {
   const [hideOnScroll, setHideOnScroll] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpenMenu = () => {
+    console.log("aaaa");
+    setIsOpen(true);
+  };
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
@@ -39,7 +48,8 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed
+      className={`
+        fixed
         z-50
         top-0
         left-0
@@ -48,11 +58,20 @@ const Header = () => {
         ease-in-out duration-300 
         ${!hideOnScroll ? "-translate-y-full" : ""}`}
     >
-      <div className="flex justify-between items-center px-section-x min-h-header bg-gradient-to-b from-primary-light">
+      <div
+        className={cn(`
+          flex
+          justify-center md:justify-between
+          items-center
+          header-mobile md:min-h-header
+          bg-gradient-to-b
+          from-primary-light
+        `)}
+      >
         <Link href="/">
           <Image src={logo} alt="Amora" />
         </Link>
-        <div>
+        <div className="hidden md:block">
           {menuItems.map((menuItem) => (
             <Link
               className="p-5 font-red-hat uppercase text-white hover:text-primary transition-all ease-in-out duration-300"
@@ -65,6 +84,14 @@ const Header = () => {
         </div>
       </div>
       <HorizontalDevider variant="primary" />
+
+      <div
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 md:hidden"
+        onClick={handleOpenMenu}
+      >
+        <MenuIcon className="w-5" />
+      </div>
+      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} menuItems={menuItems} className="md:hidden" />
     </div>
   );
 };
