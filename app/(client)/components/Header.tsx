@@ -47,8 +47,8 @@ const Header = () => {
 
   return (
     <div
-      className={`
-        fixed
+      className={cn(
+        `fixed
         z-50
         top-0
         left-0
@@ -57,7 +57,9 @@ const Header = () => {
         ease-in-out duration-300
         bg-gradient-to-b
         from-primary-light
-        ${!hideOnScroll ? "-translate-y-full" : ""}`}
+        `,
+        !hideOnScroll && "-translate-y-full"
+      )}
     >
       <div
         className={cn(`

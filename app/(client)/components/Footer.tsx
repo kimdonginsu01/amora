@@ -1,4 +1,5 @@
-import logo from "@/public/logo_dark.png";
+import logo from "@/public/logo_dark.svg";
+import logoLight from "@/public/logo_lg.svg";
 import Image from "next/image";
 import Link from "next/link";
 import HorizontalDivider from "./ui/HorizontalDivider";
@@ -11,6 +12,7 @@ import {
 } from "./Icons";
 import Button from "./ui/Button";
 import SectionWrapper from "./ui/SectionWrapper";
+import { HTMLAttributes } from "react";
 
 const menuItems = [
   {
@@ -54,12 +56,20 @@ const socials = [
   },
 ];
 
-const Footer = () => {
+interface Props extends HTMLAttributes<HTMLDivElement> {
+  theme?: "white" | "dark";
+}
+
+const Footer = ({ theme = "white" }: Props) => {
   return (
-    <SectionWrapper>
+    <SectionWrapper variant={theme}>
       <div className="pt-8 pb-16">
         <div>
-          <Image className="mx-auto" alt="amora" src={logo} />
+          <Image
+            className="mx-auto"
+            alt="amora"
+            src={theme === "white" ? logo : logoLight}
+          />
         </div>
         <div className="mt-8">
           <HorizontalDivider variant="primary" />
@@ -83,7 +93,7 @@ const Footer = () => {
             <Link href="mailto:info@gmail.com">info@gmail.com</Link>
           </div>
         </div>
-        <div className="flex flex-wrap justify-center md:justify-around mt-9 gap-y-4">
+        <div className="flex flex-wrap justify-center md:justify-around mt-9 gap-x-2 gap-y-4">
           {socials.map((item, index) => (
             <Button
               key={index}

@@ -26,8 +26,8 @@ const SectionWrapper = ({ variant, className, children, ...props }: Props) => {
 const wrapperVariants = cva("w-full", {
   variants: {
     variant: {
-      dark: "bg-dark",
-      white: "bg-white",
+      dark: "bg-dark text-white",
+      white: "bg-white text-black",
     },
   },
   defaultVariants: {

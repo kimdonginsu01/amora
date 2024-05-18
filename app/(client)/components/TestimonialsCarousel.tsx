@@ -22,7 +22,7 @@ const TestimonialsCarousel = (props: PropType) => {
       <div className="embla__container">
         {slides.map((item, index) => (
           <div className="embla__slide grow-0 shrink-0 basis-testimonial-slide md:basis-testimonial-slide-sm" key={index}>
-            <div className="embla__slide_number bg-secondary p-4 max-w-64 border border-offer-card/30">
+            <div className="embla__slide_number bg-secondary p-4 max-w-64 border border-offer-card/30 text-black">
               <p className="font-red-hat">
                 I was very impresed by the avivon service, lorem ipsum is simply
                 free text used by copytyping.
