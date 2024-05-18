@@ -7,8 +7,8 @@ import {
   EmblaEventType,
   EmblaOptionsType,
 } from "embla-carousel";
-import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useRef } from "react";
 import OfferCard from "../OfferCard";
 
@@ -96,13 +96,13 @@ export function EmblaCarousel(props: PropType) {
   }, [emblaApi, tweenScale]);
 
   return (
-    <div
-      className="embla embla--service"
-      ref={emblaRef}
-    >
+    <div className="embla embla--service" ref={emblaRef}>
       <div className="embla__container">
         {slides.map((item, index) => (
-          <div className="embla__slide grow-0 shrink-0 basis-service-slide md:basis-service-slide-sm" key={index}>
+          <div
+            className="embla__slide grow-0 shrink-0 basis-service-slide md:basis-service-slide-sm"
+            key={index}
+          >
             <OfferCard className="embla__slide__number" data={item} />
           </div>
         ))}

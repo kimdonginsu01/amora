@@ -1,55 +1,47 @@
+import { Offers } from "@/sanity.types";
+import { client } from "@/sanity/lib/client";
 import { EmblaCarousel } from "./ui/Carousel";
-import imgPath from "@/public/offer_card_1.png";
-import imgPath2 from "@/public/offer_card_2.png";
-import imgPath3 from "@/public/offer_card_3.png";
 import SectionHeading from "./ui/SectionHeading";
 import SectionWrapper from "./ui/SectionWrapper";
 
-const slides = [
-  {
-    imgPath: imgPath,
-    discount: "20%",
-    title: "Bassaline Massage",
-    description:
-      "Balinese massage combines thumb pressure and stretching to alleviate ...",
-  },
-  {
-    imgPath: imgPath2,
-    discount: "20%",
-    title: "Swedish Massage",
-    description:
-      "Book a 60-minute Swedish massage for 390 AED and receive an additional 15 minutes free.",
-  },
-  {
-    imgPath: imgPath3,
-    discount: "20%",
-    title: "Free Scrubbing",
-    description:
-      "Get a free scrubbing session when you book a 60-minute hot stone massage...",
-  },
-  {
-    imgPath: imgPath3,
-    discount: "20%",
-    title: "Free Scrubbing",
-    description:
-      "Get a free scrubbing session when you book a 60-minute hot stone massage...",
-  },
-];
+const getOffers = async () => {
+  const query = `
+  *[_type == "page" && _id == "d0ea95e0-4d11-4406-8cf5-01134ad272a1"]
+    .pageBuilder[_type == "offers"][0]  {
+      subHeading,
+      heading,
+      description,
+      offers[]-> {
+        discount,
+        image,
+        title,
+        excerpt,
+        slug,
+      }
+    }
+  `;
 
-const Offer = () => {
+  const [data] = await client.fetch<Offers[]>(query);
+  return data;
+};
+
+const Offer = async () => {
+  const data = await getOffers();
+
   return (
     <SectionWrapper variant="dark">
       <SectionHeading
-          className="text-light-dark"
-          subHeading="GET A DISCOUNT"
-          heading="Special Offers"
-          description="Are you looking for affordable massage prices in Dubai? Explore our
-          current promotions and discover deals to suit your budget."
-        />
+        className="text-light-dark"
+        subHeading={data.subHeading ?? ""}
+        heading={data.heading ?? ""}
+        description={data.description}
+      />
 
-        <div className="mt-9">
-          <EmblaCarousel slides={slides} options={{ loop: true }} />
-        </div>
+      <div className="mt-9">
+        {data.offers && (
+          <EmblaCarousel slides={data.offers} options={{ loop: true }} />
+        )}
+      </div>
     </SectionWrapper>
   );
 };

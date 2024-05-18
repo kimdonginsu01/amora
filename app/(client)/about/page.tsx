@@ -1,15 +1,15 @@
+import CutomerExpectation from "../components/CutomerExpectation";
 import Footer from "../components/Footer";
-import FooterBanner from "../components/FooterBanner";
+import Introduction from "../components/Introduction";
 import MinimalHero from "../components/MinimalHero";
-import Service from "../components/Service";
 
 const ServicePage = () => {
   return (
     <div>
       <MinimalHero />
-      <Service />
-      <FooterBanner />
-      <Footer />
+      <Introduction />
+      <CutomerExpectation />
+      <Footer theme="dark" />
     </div>
   );
 };

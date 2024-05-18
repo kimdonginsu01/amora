@@ -23,6 +23,7 @@ const config: Config = {
         "header-mobile": "80px",
         unset: "unset",
         "100svh": "100svh",
+        "50svh": "50svh",
         "service-slide": "100%",
         "service-slide-sm": "45%",
         "testimonial-slide": "60%",

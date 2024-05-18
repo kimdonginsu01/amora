@@ -1,13 +1,16 @@
+import { ServiceCard } from "@/sanity.types";
+import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
-import React, { HTMLAttributes } from "react";
-import imgPath from "@/public/offer_card_1.png";
-import Button from "./ui/Button";
+import Link from "next/link";
+import { HTMLAttributes } from "react";
+import type { Image as SImage } from "sanity";
 import cn from "../utils/cn";
+import Button from "./ui/Button";
 import HorizontalDevider from "./ui/HorizontalDivider";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   active?: boolean;
-  data?: any;
+  data?: ServiceCard;
 }
 
 const OfferCard = ({ data, className, ...props }: Props) => {
@@ -17,7 +20,15 @@ const OfferCard = ({ data, className, ...props }: Props) => {
       {...props}
     >
       <div className="relative">
-        <Image className="w-full object-cover" alt="offer" src={data.imgPath} />
+        {data?.image?.asset && (
+          <Image
+            className="w-full object-cover md:h-50svh"
+            alt="offer"
+            src={urlForImage(data?.image as SImage)}
+            width={352}
+            height={310}
+          />
+        )}
         <p
           className="
             absolute
@@ -36,17 +47,17 @@ const OfferCard = ({ data, className, ...props }: Props) => {
             tracking-base
             "
         >
-          {data.discount}
+          {data?.discount} %
         </p>
       </div>
       <div className="pt-6 pb-8 px-6 text-center">
-        <h2 className="text-primary text-2xl tracking-base">{data.title}</h2>
+        <h2 className="text-primary text-2xl tracking-base">{data?.title}</h2>
         <HorizontalDevider variant="primary" className="mt-3" />
         <p className="font-red-hat text-light-dark line-clamp-2 mt-4">
-          {data.description}
+          {data?.excerpt}
         </p>
         <Button className="w-full mt-4" variant="dark">
-          Book now
+          <Link href={`/service/${data?.slug?.current}`}>Book now</Link>
         </Button>
       </div>
     </div>
