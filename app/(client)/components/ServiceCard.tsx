@@ -42,23 +42,30 @@ const ServiceCard = ({ data, contacts }: Props) => {
         </div>
         <div className="mt-7">
           <div className="flex flex-wrap-reverse md:justify-between gap-y-4">
-            <Button variant="dark" className="w-full md:w-unset">
-              <Link href={data?.slug?.current ?? "#"}>READ MORE</Link>
-            </Button>
-            <div className="flex justify-center h-full w-full md:w-unset">
+            <Link
+              href={data?.slug?.current ?? "#"}
+              className="block w-full md:w-unset"
+            >
+              <Button variant="dark" className="w-full md:w-unset">
+                READ MORE
+              </Button>
+            </Link>
+            <div className="flex justify-center h-full w-full md:w-unset space-x-6">
               {contacts?.length &&
                 contacts.map((item, index) => (
-                  <Button key={index} className="!p-3 group" variant="dark">
-                    {item.icon?.asset && (
-                      <Image
-                        src={urlForImage(item.icon as SImage)}
-                        alt={item.title ?? ""}
-                        className="group-hover:grayscale group-hover:invert"
-                        width={30}
-                        height={30}
-                      />
-                    )}
-                  </Button>
+                  <Link key={index} href={item.href ?? "#"} className="block">
+                    <Button className="!p-3 group" variant="dark">
+                      {item.icon?.asset && (
+                        <Image
+                          src={urlForImage(item.icon as SImage)}
+                          alt={item.title ?? ""}
+                          className="group-hover:grayscale group-hover:invert"
+                          width={30}
+                          height={30}
+                        />
+                      )}
+                    </Button>
+                  </Link>
                 ))}
             </div>
           </div>

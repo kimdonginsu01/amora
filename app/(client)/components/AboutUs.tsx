@@ -1,32 +1,14 @@
-import { client } from "@/sanity/lib/client";
+import { Menu } from "@/sanity.types";
+import { getHomePageAboutUs } from "@/sanity/lib/api";
+import { PortableText } from "@portabletext/react";
+import Link from "next/link";
+import { Image, TypedObject } from "sanity";
 import Button from "./ui/Button";
 import SectionWrapper from "./ui/SectionWrapper";
 import StyledImage from "./ui/StyledImage";
-import { AboutUs as SAboutUs, Page } from "@/sanity.types";
-import { Image, TypedObject } from "sanity";
-import Link from "next/link";
-import { PortableText } from "@portabletext/react";
-
-const getAboutUs = async () => {
-  const query = `
-  *[_type == "page" && _id == "d0ea95e0-4d11-4406-8cf5-01134ad272a1"]
-    .pageBuilder[_type == "aboutUs"][0]  {
-      image,
-      heading,
-      subHeading,
-      body,
-      button {
-        label, href, variant
-      }
-    }
-  `;
-
-  const [data] = await client.fetch<SAboutUs[]>(query);
-  return data;
-};
 
 const AboutUs = async () => {
-  const data = await getAboutUs();
+  const data = await getHomePageAboutUs();
 
   return (
     <SectionWrapper>
@@ -44,12 +26,16 @@ const AboutUs = async () => {
           <div className="font-red-hat space-y-4">
             <PortableText value={data.body as TypedObject[]} />
           </div>
-          <Button
-            className="!mt-11"
-            variant={data.button?.variant ?? "primary"}
+          <Link
+            href={(data.button?.link as unknown as Menu).slug?.current ?? "/"}
           >
-            <Link href={data.button?.href ?? "/"}>{data.button?.label}</Link>
-          </Button>
+            <Button
+              className="!mt-11"
+              variant={data.button?.variant ?? "primary"}
+            >
+              {data.button?.label}
+            </Button>
+          </Link>
         </div>
         <div className="spacer"></div>
         <div className="hidden md:block col-span-4 h-full content-center">

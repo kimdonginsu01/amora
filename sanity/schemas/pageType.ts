@@ -27,10 +27,10 @@ export const pageType = defineType({
           name: "services",
           type: "services",
         }),
-        // defineArrayMember({
-        //   name: "video",
-        //   type: "video",
-        // }),
+        defineArrayMember({
+          name: "testimonial",
+          type: "mainTestimonial",
+        }),
         // defineArrayMember({
         //   name: "callToAction",
         //   type: "reference",

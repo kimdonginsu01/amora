@@ -2,11 +2,12 @@ import React, { Dispatch, HTMLAttributes, SetStateAction } from "react";
 import cn from "../utils/cn";
 import Link from "next/link";
 import { CloseIcon } from "./Icons";
+import { Menu } from "@/sanity.types";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   isOpen?: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  menuItems: { title: string; path: string }[];
+  menuItems: Menu[];
 }
 
 const MobileMenu = ({
@@ -39,8 +40,11 @@ const MobileMenu = ({
     >
       <ul className="pt-header-mobile pl-6">
         {menuItems.map((item, index) => (
-          <li className="" key={index}>
-            <Link href={item.path} className="block p-2 text-xl">
+          <li key={index}>
+            <Link
+              href={item.slug?.current ?? "#"}
+              className="block p-2 text-xl"
+            >
               {item.title}
             </Link>
           </li>

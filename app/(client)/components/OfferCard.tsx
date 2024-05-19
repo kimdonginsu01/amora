@@ -56,9 +56,11 @@ const OfferCard = ({ data, className, ...props }: Props) => {
         <p className="font-red-hat text-light-dark line-clamp-2 mt-4">
           {data?.excerpt}
         </p>
-        <Button className="w-full mt-4" variant="dark">
-          <Link href={`/service/${data?.slug?.current}`}>Book now</Link>
-        </Button>
+        <Link href={`/service/${data?.slug?.current}`}>
+          <Button className="w-full mt-4" variant="dark">
+            Book now
+          </Button>
+        </Link>
       </div>
     </div>
   );

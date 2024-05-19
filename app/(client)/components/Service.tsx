@@ -1,58 +1,19 @@
-import {
-  ContactInfo,
-  ServiceCard as SServiceCard,
-  Services,
-} from "@/sanity.types";
-import { client } from "@/sanity/lib/client";
+import { ServiceCard as SServiceCard } from "@/sanity.types";
+import { getHomePageContactInfo, getServices } from "@/sanity/lib/api";
+import Link from "next/link";
 import ServiceCard from "./ServiceCard";
 import Button from "./ui/Button";
 import SectionHeading from "./ui/SectionHeading";
 import SectionWrapper from "./ui/SectionWrapper";
-import { revalidatePath } from "next/cache";
-import Link from "next/link";
 
-revalidatePath("/");
+interface Props {
+  showPopular?: boolean;
+}
 
-const getPopularServices = async () => {
-  const query = `
-    {
-      "popularServices": *[_type == "page" && _id == "d0ea95e0-4d11-4406-8cf5-01134ad272a1"]
-                            .pageBuilder[_type == "services"][0] {
-        subHeading,
-        heading,
-        description,
-        popularServices[]->{
-          image,
-          title,
-          slug,
-          excerpt,
-          pricings[] {
-            time,
-            price
-          }
-        }
-      },
-      "contactInfo": *[_type == "contactInfo" 
-                        && _id in ["524f47be-2f69-4eaf-9c36-80b5b172dba4", "5393bffa-ca82-41f1-9fdf-ff97825d6a3e"]
-                        && withAction == true
-                      ] {
-        title,
-        icon,
-        href,
-      }
-    }
-  `;
-
-  const data = await client.fetch<{
-    popularServices: Services[];
-    contactInfo: ContactInfo[];
-  }>(query);
-  return data;
-};
-
-const Service = async () => {
-  const { popularServices, contactInfo } = await getPopularServices();
-  const data = { ...popularServices[0], contactInfo };
+const Service = async ({ showPopular }: Props) => {
+  const popularServices = await getServices(showPopular);
+  const contactInfo = await getHomePageContactInfo();
+  const data = { ...popularServices, contactInfo };
 
   return (
     <SectionWrapper>
@@ -73,11 +34,13 @@ const Service = async () => {
           ))}
       </div>
 
-      <div className="flex justify-center mt-12">
-        <Button variant="primary">
-          <Link href="/service">All Services</Link>
-        </Button>
-      </div>
+      {showPopular && (
+        <div className="flex justify-center mt-12">
+          <Link href="/service">
+            <Button variant="primary">All Services</Button>
+          </Link>
+        </div>
+      )}
     </SectionWrapper>
   );
 };

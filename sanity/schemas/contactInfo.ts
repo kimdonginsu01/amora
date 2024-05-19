@@ -32,7 +32,6 @@ export const contactInfo = defineType({
           type: "string",
         }),
       ],
-      hidden: ({ document }) => !!document?.withAction,
     }),
     defineField({
       name: "href",
