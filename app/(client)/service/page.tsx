@@ -1,4 +1,3 @@
-import Footer from "../components/Footer";
 import FooterBanner from "../components/FooterBanner";
 import MinimalHero from "../components/MinimalHero";
 import Service from "../components/Service";
@@ -9,7 +8,6 @@ const ServicePage = () => {
       <MinimalHero />
       <Service />
       <FooterBanner />
-      <Footer theme="dark" />
     </div>
   );
 };

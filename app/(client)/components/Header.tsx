@@ -2,30 +2,20 @@
 
 import { useScrollPosition } from "@/app/hooks/useSrollPosition";
 import logo from "@/public/logo.svg";
+import { Menu } from "@/sanity.types";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import HorizontalDevider from "./ui/HorizontalDivider";
 import cn from "../utils/cn";
 import { MenuIcon } from "./Icons";
 import MobileMenu from "./MobileMenu";
+import HorizontalDevider from "./ui/HorizontalDivider";
 
-const menuItems = [
-  {
-    title: "About us",
-    path: "/about",
-  },
-  {
-    title: "Service",
-    path: "/service",
-  },
-  {
-    title: "Contacts",
-    path: "contact",
-  },
-];
+interface Props {
+  menus: Menu[];
+}
 
-const Header = () => {
+const Header = ({ menus }: Props) => {
   const [hideOnScroll, setHideOnScroll] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -72,11 +62,11 @@ const Header = () => {
           <Image src={logo} alt="Amora" />
         </Link>
         <div className="hidden md:block">
-          {menuItems.map((menuItem) => (
+          {menus.map((menuItem) => (
             <Link
               className="p-5 font-red-hat uppercase text-white hover:text-primary transition-all ease-in-out duration-300"
-              key={menuItem.path}
-              href={menuItem.path}
+              key={menuItem.slug?.current}
+              href={menuItem.slug?.current ?? "#"}
             >
               {menuItem.title}
             </Link>
@@ -94,7 +84,7 @@ const Header = () => {
       <MobileMenu
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        menuItems={menuItems}
+        menuItems={menus}
         className="md:hidden"
       />
     </div>

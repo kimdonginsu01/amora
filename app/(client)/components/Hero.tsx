@@ -1,30 +1,12 @@
-import { Hero as SHero } from "@/sanity.types";
-import { client } from "@/sanity/lib/client";
+import { getHomePageBanner } from "@/sanity/lib/api";
 import { urlForImage } from "@/sanity/lib/image";
 import Image from "next/image";
 import Link from "next/link";
 import type { Image as SImage } from "sanity";
 import Button from "./ui/Button";
 
-const getHeroBanner = async () => {
-  const query = `
-  *[_type == "page" && _id == "d0ea95e0-4d11-4406-8cf5-01134ad272a1"]
-    .pageBuilder[_type == "hero"][0]  {
-        image,
-        heading,
-        subHeading,
-        buttons[] {
-          label, href, openNewTab, variant
-        }
-    }
-  `;
-
-  const [data] = await client.fetch<SHero[]>(query);
-  return data;
-};
-
 const Hero = async () => {
-  const data = await getHeroBanner();
+  const data = await getHomePageBanner();
 
   return (
     <div className="text-center md:text-left relative">
@@ -55,16 +37,15 @@ const Hero = async () => {
             {data?.heading}
           </h1>
           <h3 className="font-red-hat md:text-lg mt-3">{data?.subHeading}</h3>
-          <div className="mt-8 flex flex-wrap justify-center md:justify-start">
+          <div className="mt-8 flex flex-wrap justify-center md:justify-start space-x-6">
             {data.buttons?.map((btn, index) => (
-              <Button variant={btn.variant ?? "primary"} key={index}>
-                <Link
-                  href={btn.href ?? "/"}
-                  target={btn.openNewTab ? "_blank" : "_self"}
-                >
-                  {btn.label}
-                </Link>
-              </Button>
+              <Link
+                key={index}
+                href={btn.href ?? "/"}
+                target={btn.openNewTab ? "_blank" : "_self"}
+              >
+                <Button variant={btn.variant ?? "primary"}>{btn.label}</Button>
+              </Link>
             ))}
           </div>
         </div>

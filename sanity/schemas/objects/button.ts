@@ -12,10 +12,31 @@ export const button = defineType({
       type: "string",
     }),
     defineField({
+      name: "isInternalNavigation",
+      title: "Is internal navigation?",
+      type: "boolean",
+      initialValue: true,
+    }),
+    defineField({
       name: "href",
       title: "Href",
       type: "string",
-      validation: rule => rule.required()
+      hidden: ({ parent }) => !!parent?.isInternalNavigation,
+      validation: (rule) =>
+        rule.custom((value, { parent }: any) =>
+          !value && !parent?.isInternalNavigation ? "Required" : true
+        ),
+    }),
+    defineField({
+      name: "link",
+      title: "Link to page",
+      type: "reference",
+      to: [{ type: "menu" }],
+      hidden: ({ parent }) => !parent?.isInternalNavigation,
+      validation: (rule) =>
+        rule.custom((value, { parent }: any) =>
+          !value && !!parent?.isInternalNavigation ? "Required" : true
+        ),
     }),
     defineField({
       name: "openNewTab",
