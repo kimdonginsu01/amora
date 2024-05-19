@@ -1,11 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import { PhoneContactIcon } from "./Icons";
-import ModalBooking from "./ModalBooking";
 import Button from "./ui/Button";
 import SectionWrapper from "./ui/SectionWrapper";
+import ModalBooking from "./ModalBooking";
 import { useState } from "react";
 
 export const InformationService = () => {
+  const [openModal, setOpenModal] = useState(false);
   const contactsIcon = [
     {
       to: "",
@@ -117,7 +120,11 @@ export const InformationService = () => {
           </ul>
           <div className="my-7 h-[1px] w-full bg-[#A28869]"></div>
           <div className="flex flex-wrap-reverse md:justify-between gap-y-4">
-            <Button variant="dark" className="w-full md:w-unset">
+            <Button
+              variant="dark"
+              className="w-full md:w-unset"
+              onClick={() => setOpenModal(true)}
+            >
               BOOKING NOW
             </Button>
             <div className="flex justify-center h-full w-full md:w-unset">
@@ -130,6 +137,7 @@ export const InformationService = () => {
           </div>
         </div>
       </div>
+      <ModalBooking openModal={openModal} setOpenModal={setOpenModal} />
     </SectionWrapper>
   );
 };

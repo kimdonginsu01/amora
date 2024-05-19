@@ -9,7 +9,7 @@
   --hero-ratio: 0.57;
   --hero-bg: calc(var(--hero-ratio) * 100vw);
   --service-card-slide-size: 45%;
-  --testimonial-card-slide-size: 50%
+  --testimonial-card-slide-size: 50%;
 }
 
 body {
@@ -24,6 +24,10 @@ body {
   button + button {
     @apply ml-6;
   }
+}
+
+input:focus {
+  outline: none;
 }
 
 @layer components {
