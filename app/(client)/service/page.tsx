@@ -9,7 +9,7 @@ const ServicePage = () => {
       <MinimalHero />
       <Service />
       <FooterBanner />
-      <Footer />
+      <Footer theme="dark" />
     </div>
   );
 };

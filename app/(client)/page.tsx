@@ -15,7 +15,7 @@ export default function Home() {
       <Service />
       <Testimonials />
       <FooterBanner />
-      <Footer />
+      <Footer theme="dark" />
     </>
   );
 }

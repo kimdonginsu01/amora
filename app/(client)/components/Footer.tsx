@@ -93,12 +93,12 @@ const Footer = ({ theme = "white" }: Props) => {
             <Link href="mailto:info@gmail.com">info@gmail.com</Link>
           </div>
         </div>
-        <div className="flex flex-wrap justify-center md:justify-around mt-9 gap-x-2 gap-y-4">
+        <div className="flex flex-wrap justify-center md:justify-around mt-9 gap-x-2 gap-y-4 ">
           {socials.map((item, index) => (
             <Button
               key={index}
               variant="dark"
-              className="max-w-16 flex justify-center items-center ml-unset"
+              className="max-w-16 flex justify-center items-center ml-unset !p-[10px]"
             >
               <span>{item.icon}</span>
             </Button>
