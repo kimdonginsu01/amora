@@ -38,7 +38,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-primary text-white hover:border-transparent hover:bg-transparent hover:text-black",
+          "border-primary bg-primary text-white hover:border-white hover:bg-white hover:text-black",
         light:
           "border-white bg-white text-black hover:bg-primary hover:text-white hover:border-primary",
         dark: "border-light-dark bg-light-dark text-primary hover:bg-primary hover:border-primary hover:text-white",

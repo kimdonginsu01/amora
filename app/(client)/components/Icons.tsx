@@ -183,7 +183,7 @@ export const MenuIcon = ({ className }: Props) => (
   </svg>
 );
 
-export const CloseIcon = ({ className, ...props }: Props) => (
+export const CloseIcon = ({ className, color = "black", ...props }: Props) => (
   <svg
     width="51"
     height="51"
@@ -195,7 +195,7 @@ export const CloseIcon = ({ className, ...props }: Props) => (
   >
     <path
       d="M48.0979 48.069L25.5979 25.569M25.5979 25.569L3.09795 3.06904M25.5979 25.569L48.0982 3.06904M25.5979 25.569L3.09795 48.0693"
-      stroke="black"
+      stroke={color}
       strokeWidth="5"
       strokeLinecap="round"
       strokeLinejoin="round"

@@ -1,7 +1,8 @@
 import { groq } from "next-sanity";
 
-const homePageId = "d0ea95e0-4d11-4406-8cf5-01134ad272a1";
-const servicePageId = "2611e23c-024e-4f0e-8969-307b29c95021";
+export const homePageId = "d0ea95e0-4d11-4406-8cf5-01134ad272a1";
+export const servicePageId = "2611e23c-024e-4f0e-8969-307b29c95021";
+export const aboutUsPageId = "c2a8e1f5-0a1c-497c-9902-a1f71b669d3f"
 const whatsAppId = "524f47be-2f69-4eaf-9c36-80b5b172dba4";
 const phoneId = "5393bffa-ca82-41f1-9fdf-ff97825d6a3e";
 const addressId = "1b97844b-c2bb-4926-8cf7-21dc3c323e7c";
@@ -134,5 +135,43 @@ export const getHomePageContactInfoQuery = groq`
         title,
         icon,
         href,
+    }
+`;
+
+export const getMinimalHeroQuery = groq`
+    *[_type == "page" && _id == $pageId][0]
+    .pageBuilder[_type == "minimalHero"][0] {
+        image,
+        heading,
+    }
+`;
+
+export const getIntroductionQuery = groq`
+    *[_type == "page" && _id == $pageId][0]
+    .pageBuilder[_type == "introduction"][0] {
+        image,
+        heading,
+        body,
+    }
+`;
+
+export const getCustomerExpectationQuery = groq`
+    *[_type == "page" && _id == $pageId][0]
+    .pageBuilder[_type == "customerExpectation"][0] {
+        heading,
+        items[],
+    }
+`;
+
+export const getServiceDetailsQuery = groq`
+    *[_type == "serviceCard" && slug.current == $slug][0] {
+        title,
+        image,
+        excerpt,
+        body,
+        pricings[] {
+            time,
+            price
+        }
     }
 `;

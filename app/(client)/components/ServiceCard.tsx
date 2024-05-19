@@ -19,7 +19,7 @@ const ServiceCard = ({ data, contacts }: Props) => {
           alt="service"
           src={urlForImage(data.image as SImage)}
           style={{ width: "100%" }}
-          className="md:h-50svh"
+          className="md:h-50svh object-cover"
           width={581}
           height={370}
         />

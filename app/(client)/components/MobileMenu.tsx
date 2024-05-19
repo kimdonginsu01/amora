@@ -1,8 +1,8 @@
-import React, { Dispatch, HTMLAttributes, SetStateAction } from "react";
-import cn from "../utils/cn";
-import Link from "next/link";
-import { CloseIcon } from "./Icons";
 import { Menu } from "@/sanity.types";
+import Link from "next/link";
+import { Dispatch, HTMLAttributes, SetStateAction } from "react";
+import cn from "../utils/cn";
+import { CloseIcon } from "./Icons";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   isOpen?: boolean;
@@ -42,7 +42,7 @@ const MobileMenu = ({
         {menuItems.map((item, index) => (
           <li key={index}>
             <Link
-              href={item.slug?.current ?? "#"}
+              href={`/${item.slug?.current}` ?? "#"}
               className="block p-2 text-xl"
             >
               {item.title}

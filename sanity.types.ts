@@ -153,6 +153,24 @@ export type ServiceCard = {
     _type: "image";
   };
   excerpt?: string;
+  body?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
   isDiscounted?: boolean;
   discount?: number;
   pricings?: Array<{
@@ -177,7 +195,99 @@ export type Page = {
     _key: string;
   } & Services) | ({
     _key: string;
-  } & MainTestimonial)>;
+  } & MainTestimonial) | ({
+    _key: string;
+  } & MinimalHero) | ({
+    _key: string;
+  } & MainServices) | ({
+    _key: string;
+  } & Introduction) | ({
+    _key: string;
+  } & CustomerExpectation)>;
+};
+
+export type CustomerExpectation = {
+  _type: "customerExpectation";
+  heading?: string;
+  items?: Array<{
+    _key: string;
+  } & ExpectationItem>;
+};
+
+export type ExpectationItem = {
+  _type: "expectationItem";
+  icon?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  title?: string;
+  description?: string;
+};
+
+export type Introduction = {
+  _type: "introduction";
+  heading?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  body?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type MainServices = {
+  _type: "mainServices";
+  subHeading?: string;
+  heading?: string;
+};
+
+export type MinimalHero = {
+  _type: "minimalHero";
+  heading?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
 };
 
 export type MainTestimonial = {
@@ -376,6 +486,43 @@ export type Slug = {
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: ./sanity/lib/queries.ts
+// Variable: getFooterBannerQuery
+// Query:     *[_type == "footerBanner"][0] {        content,        banner,    }
+export type GetFooterBannerQueryResult = {
+  content: string | null;
+  banner: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+} | null;
+// Variable: getFooterContactInfoQuery
+// Query:     *[_type == "contactInfo" && _id in ["5393bffa-ca82-41f1-9fdf-ff97825d6a3e", "1b97844b-c2bb-4926-8cf7-21dc3c323e7c"]] {        details,    }
+export type GetFooterContactInfoQueryResult = Array<{
+  details: Array<string> | null;
+}>;
+// Variable: getSocialMediasQuery
+// Query:     *[_type == "contactInfo" && isSocial == true] {        icon,        href,    }
+export type GetSocialMediasQueryResult = Array<{
+  icon: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  href: string | null;
+}>;
 // Variable: getHomePageBannerQuery
 // Query:     *[_type == "page" && _id == "d0ea95e0-4d11-4406-8cf5-01134ad272a1"][0]    .pageBuilder[_type == "hero"][0]  {        image,        heading,        subHeading,        buttons[] {        label, href, openNewTab, variant        }    }
 export type GetHomePageBannerQueryResult = {
@@ -494,13 +641,14 @@ export type GetPopularServicesQueryResult = {
     }> | null;
   }> | null;
 } | null;
-// Variable: getServicesQuery
-// Query:     *[_type == "page" && _id == "d0ea95e0-4d11-4406-8cf5-01134ad272a1"][0]    .pageBuilder[_type == "services"][0] {        subHeading,        heading,        description,        popularServices[]-> {            image,            title,            slug,            excerpt,            pricings[] {                time,                price            }        }    }
-export type GetServicesQueryResult = {
-  subHeading: string | null;
-  heading: string | null;
-  description: string | null;
-  popularServices: Array<{
+// Variable: getMainServiceQuery
+// Query:     {        "headings": *[_type == "page" && _id == "2611e23c-024e-4f0e-8969-307b29c95021"][0]                        .pageBuilder[_type == "mainServices"][0] {            subHeading,            heading,        },        "services": *[_type == "serviceCard"] {            image,            title,            slug,            excerpt,            pricings[] {                time,                price            }        }    }
+export type GetMainServiceQueryResult = {
+  headings: {
+    subHeading: string | null;
+    heading: string | null;
+  } | null;
+  services: Array<{
     image: {
       asset?: {
         _ref: string;
@@ -519,27 +667,17 @@ export type GetServicesQueryResult = {
       time: number | null;
       price: number | null;
     }> | null;
-  }> | null;
-} | null;
+  }>;
+};
 // Variable: getHomePageTestimonialQuery
 // Query:     *[_type == "page" && _id == "d0ea95e0-4d11-4406-8cf5-01134ad272a1"][0]    .pageBuilder[_type == "testimonial"][0] {        subHeading,        heading,        description,        testimonials[]-> {            clientName,            clientAvatar,            content,        }    }
 export type GetHomePageTestimonialQueryResult = null;
-// Variable: getFooterBannerQuery
-// Query:     *[_type == "footerBanner"][0] {        content,        banner,    }
-export type GetFooterBannerQueryResult = {
-  content: string | null;
-  banner: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  } | null;
-} | null;
+// Variable: getMenuQuery
+// Query:     *[_type == "menu"] {        title,        slug,    }
+export type GetMenuQueryResult = Array<{
+  title: string | null;
+  slug: Slug | null;
+}>;
 // Variable: getHomePageContactInfoQuery
 // Query:     *[_type == "contactInfo" && _id in ["524f47be-2f69-4eaf-9c36-80b5b172dba4", "5393bffa-ca82-41f1-9fdf-ff97825d6a3e"] && withAction == true] {        title,        icon,        href,    }
 export type GetHomePageContactInfoQueryResult = Array<{
@@ -557,4 +695,60 @@ export type GetHomePageContactInfoQueryResult = Array<{
   } | null;
   href: string | null;
 }>;
+// Variable: getServicesMinimalHeroQuery
+// Query:     *[_type == "page" && _id == "2611e23c-024e-4f0e-8969-307b29c95021"][0]    .pageBuilder[_type == "minimalHero"][0] {        image,        heading,    }
+export type GetServicesMinimalHeroQueryResult = {
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  heading: string | null;
+} | null;
+// Variable: getServiceDetailsQuery
+// Query:     *[_type == "serviceCard" && slug.current == $slug][0] {        title,        image,        excerpt,        body,        pricings[] {            time,            price        }    }
+export type GetServiceDetailsQueryResult = {
+  title: string | null;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  excerpt: string | null;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  pricings: Array<{
+    time: number | null;
+    price: number | null;
+  }> | null;
+} | null;
 

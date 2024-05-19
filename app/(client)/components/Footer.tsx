@@ -38,7 +38,7 @@ const Footer = async ({ theme = "white", menus }: Props) => {
               <Link
                 className="inline-block p-5 font-red-hat text-2xl uppercase text-primary hover:text-black transition-all ease-in-out duration-300"
                 key={menuItem.slug?.current ?? "#"}
-                href={menuItem.slug?.current ?? "#"}
+                href={`/${menuItem.slug?.current}` ?? "#"}
               >
                 {menuItem.title}
               </Link>
@@ -61,7 +61,7 @@ const Footer = async ({ theme = "white", menus }: Props) => {
         </div>
         <div className="flex flex-wrap justify-center md:justify-around mt-9 gap-x-2 gap-y-4">
           {medias.map((item, index) => (
-            <Link key={index} href={item.href ?? "#"} className="group">
+            <Link key={index} href={item.href ?? "#"} className="group" target="_blank">
               <Button
                 variant="dark"
                 className="ml-unset"

@@ -34,6 +34,12 @@ export const serviceCard = defineType({
       validation: (rule) => rule.required().max(200),
     }),
     defineField({
+      name: "body",
+      title: "Body",
+      type: "array",
+      of: [{ type: "block" }],
+    }),
+    defineField({
       name: "isDiscounted",
       title: "Is Discounted",
       type: "boolean",

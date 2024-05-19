@@ -39,6 +39,14 @@ export const pageType = defineType({
           name: "mainServices",
           type: "mainServices",
         }),
+        defineArrayMember({
+          name: "introduction",
+          type: "introduction",
+        }),
+        defineArrayMember({
+          name: "customerExpectation",
+          type: "customerExpectation",
+        }),
         // defineArrayMember({
         //   name: "callToAction",
         //   type: "reference",

@@ -66,7 +66,7 @@ const Header = ({ menus }: Props) => {
             <Link
               className="p-5 font-red-hat uppercase text-white hover:text-primary transition-all ease-in-out duration-300"
               key={menuItem.slug?.current}
-              href={menuItem.slug?.current ?? "#"}
+              href={`/${menuItem.slug?.current}` ?? "#"}
             >
               {menuItem.title}
             </Link>
