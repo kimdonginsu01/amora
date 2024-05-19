@@ -1,12 +1,12 @@
 import FooterBanner from "../components/FooterBanner";
+import MainServices from "../components/MainServices";
 import MinimalHero from "../components/MinimalHero";
-import Service from "../components/Service";
 
 const ServicePage = () => {
   return (
     <div>
       <MinimalHero />
-      <Service />
+      <MainServices />
       <FooterBanner />
     </div>
   );

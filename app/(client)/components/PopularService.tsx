@@ -1,17 +1,13 @@
 import { ServiceCard as SServiceCard } from "@/sanity.types";
-import { getHomePageContactInfo, getServices } from "@/sanity/lib/api";
+import { getHomePageContactInfo, getPopularServices } from "@/sanity/lib/api";
 import Link from "next/link";
 import ServiceCard from "./ServiceCard";
 import Button from "./ui/Button";
 import SectionHeading from "./ui/SectionHeading";
 import SectionWrapper from "./ui/SectionWrapper";
 
-interface Props {
-  showPopular?: boolean;
-}
-
-const Service = async ({ showPopular }: Props) => {
-  const popularServices = await getServices(showPopular);
+const PopularService = async () => {
+  const popularServices = await getPopularServices();
   const contactInfo = await getHomePageContactInfo();
   const data = { ...popularServices, contactInfo };
 
@@ -34,15 +30,13 @@ const Service = async ({ showPopular }: Props) => {
           ))}
       </div>
 
-      {showPopular && (
-        <div className="flex justify-center mt-12">
-          <Link href="/service">
-            <Button variant="primary">All Services</Button>
-          </Link>
-        </div>
-      )}
+      <div className="flex justify-center mt-12">
+        <Link href="/service">
+          <Button variant="primary">All Services</Button>
+        </Link>
+      </div>
     </SectionWrapper>
   );
 };
 
-export default Service;
+export default PopularService;

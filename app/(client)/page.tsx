@@ -1,9 +1,8 @@
 import AboutUs from "./components/AboutUs";
-import Footer from "./components/Footer";
 import FooterBanner from "./components/FooterBanner";
 import Hero from "./components/Hero";
 import Offer from "./components/Offer";
-import Service from "./components/Service";
+import PopularService from "./components/PopularService";
 import Testimonials from "./components/Testimonials";
 
 export default function Home() {
@@ -12,7 +11,7 @@ export default function Home() {
       <Hero />
       <AboutUs />
       <Offer />
-      <Service showPopular />
+      <PopularService />
       <Testimonials />
       <FooterBanner />
     </>

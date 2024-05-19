@@ -19,6 +19,7 @@ const ServiceCard = ({ data, contacts }: Props) => {
           alt="service"
           src={urlForImage(data.image as SImage)}
           style={{ width: "100%" }}
+          className="md:h-50svh"
           width={581}
           height={370}
         />
@@ -43,7 +44,7 @@ const ServiceCard = ({ data, contacts }: Props) => {
         <div className="mt-7">
           <div className="flex flex-wrap-reverse md:justify-between gap-y-4">
             <Link
-              href={data?.slug?.current ?? "#"}
+              href={"/service/" + data?.slug?.current ?? "#"}
               className="block w-full md:w-unset"
             >
               <Button variant="dark" className="w-full md:w-unset">

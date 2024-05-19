@@ -31,6 +31,14 @@ export const pageType = defineType({
           name: "testimonial",
           type: "mainTestimonial",
         }),
+        defineArrayMember({
+          name: "minimalHero",
+          type: "minimalHero",
+        }),
+        defineArrayMember({
+          name: "mainServices",
+          type: "mainServices",
+        }),
         // defineArrayMember({
         //   name: "callToAction",
         //   type: "reference",

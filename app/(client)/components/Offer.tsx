@@ -7,7 +7,7 @@ const Offer = async () => {
   const data = await getHomePageOffer();
 
   return (
-    <SectionWrapper variant="dark">
+    <SectionWrapper variant="black">
       <SectionHeading
         className="text-light-dark"
         subHeading={data.subHeading ?? ""}

@@ -1,13 +1,13 @@
+import { Testimonial } from "@/sanity.types";
 import { getHomePageTestimonial } from "@/sanity/lib/api";
 import TestimonialsCarousel from "./TestimonialsCarousel";
 import SectionWrapper from "./ui/SectionWrapper";
-import { Testimonial } from "@/sanity.types";
 
 const Testimonials = async () => {
   const data = await getHomePageTestimonial();
   return (
     <SectionWrapper
-      variant="dark"
+      variant="black"
       className="pt-12 pb-56 md:pb-56 mb-44 relative"
     >
       <div className="flex flex-wrap gap-y-4">

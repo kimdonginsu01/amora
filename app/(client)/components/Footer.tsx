@@ -19,7 +19,6 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 const Footer = async ({ theme = "white", menus }: Props) => {
   const medias = await getSocialMedias();
   const contacts = await getFooterContactInfo();
-  console.log(medias, contacts);
   return (
     <SectionWrapper variant={theme}>
       <div className="pt-8 pb-16">
@@ -65,11 +64,11 @@ const Footer = async ({ theme = "white", menus }: Props) => {
             <Link key={index} href={item.href ?? "#"} className="group">
               <Button
                 variant="dark"
-                className="ml-unset group-hover:grayscale group-hover:invert"
+                className="ml-unset"
               >
                 {item.icon?.asset && (
                   <Image
-                    className="w-9 h-9 object-contain"
+                    className="w-9 h-9 object-contain group-hover:grayscale group-hover:invert"
                     src={urlForImage(item.icon as SImage)}
                     alt={item.href ?? "social"}
                     width={35}

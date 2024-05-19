@@ -66,9 +66,18 @@ export const getHomePageOffer = async () => {
   return data;
 };
 
-export const getServices = async (showPopular?: boolean) => {
+export const getPopularServices = async () => {
   const data = await client.fetch<Services>(
-    showPopular ? queries.getPopularServicesQuery : queries.getServicesQuery,
+    queries.getPopularServicesQuery,
+    {},
+    { cache: "no-cache" }
+  );
+  return data;
+};
+
+export const getMainServices = async () => {
+  const data = await client.fetch<{ headings: any; services: Services[] }>(
+    queries.getMainServiceQuery,
     {},
     { cache: "no-cache" }
   );

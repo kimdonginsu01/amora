@@ -1,5 +1,5 @@
 import { VariantProps, cva } from "class-variance-authority";
-import React, { HTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
 import cn from "../../utils/cn";
 
 interface Props
@@ -26,8 +26,8 @@ const SectionWrapper = ({ variant, className, children, ...props }: Props) => {
 const wrapperVariants = cva("w-full", {
   variants: {
     variant: {
-      dark: "bg-[#212121] text-white",
-      black: "bg-[#0E0E0E] text-white",
+      dark: "bg-dark text-white",
+      black: "bg-darker text-white",
       white: "bg-white text-black",
     },
   },

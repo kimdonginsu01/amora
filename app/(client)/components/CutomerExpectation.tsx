@@ -1,11 +1,10 @@
-import Image from "next/image";
-import React from "react";
-import SectionWrapper from "./ui/SectionWrapper";
 import IServiceContent, { SERVICES } from "@/constain";
+import Image from "next/image";
+import SectionWrapper from "./ui/SectionWrapper";
 
 const CutomerExpectation = () => {
   return (
-    <SectionWrapper variant="dark">
+    <SectionWrapper variant="black">
       <div className="grid items-center text-white">
         <h3 className="text-xl-42 text-primary text-center mb-14">
           Here&apos;s what you can expect at Amora Spa

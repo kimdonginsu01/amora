@@ -38,9 +38,10 @@ const config: Config = {
       colors: {
         primary: "var(--primary)",
         secondary: "var(--secondary)",
-        dark: "#0E0E0E",
-        "primary-light": "rgb(162 136 105 / 50%)",
+        dark: "#212121",
+        darker: "#0E0E0E",
         "light-dark": "#2A2A2A",
+        "primary-light": "rgb(162 136 105 / 50%)",
         "section-description": "#222222",
         divider: "#A288696B",
       },
