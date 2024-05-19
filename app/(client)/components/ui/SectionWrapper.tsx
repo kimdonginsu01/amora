@@ -5,7 +5,7 @@ import cn from "../../utils/cn";
 interface Props
   extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof wrapperVariants> {
-  variant?: "dark" | "white";
+  variant?: "dark" | "white" | "black";
 }
 
 const SectionWrapper = ({ variant, className, children, ...props }: Props) => {
@@ -26,7 +26,8 @@ const SectionWrapper = ({ variant, className, children, ...props }: Props) => {
 const wrapperVariants = cva("w-full", {
   variants: {
     variant: {
-      dark: "bg-dark text-white",
+      dark: "bg-[#212121] text-white",
+      black: "bg-[#0E0E0E] text-white",
       white: "bg-white text-black",
     },
   },
