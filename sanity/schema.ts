@@ -18,6 +18,7 @@ import { serviceCard } from "./schemas/serviceCard";
 import { services } from "./schemas/services";
 import { testimonial } from "./schemas/testimonial";
 import { location } from "./schemas/location";
+import { bookingClient } from "./schemas/bookingClient";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -43,5 +44,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     testimonial,
     footerBanner,
     menu,
+    bookingClient,
   ],
 };

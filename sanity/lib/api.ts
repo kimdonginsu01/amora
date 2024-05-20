@@ -15,6 +15,9 @@ import {
 } from "@/sanity.types";
 import * as queries from "@/sanity/lib/queries";
 import { client } from "./client";
+import { FormState } from "sanity";
+import { validateForm } from "@/app/(client)/utils/cn";
+import { writeToken } from "../env";
 
 export const getMenus = async () => {
   const menu = await client.fetch<Menu[]>(queries.getMenuQuery, {});
@@ -98,6 +101,7 @@ export const getMinimalHero = async (pageId: string) => {
   const data = await client.fetch<MinimalHero>(queries.getMinimalHeroQuery, {
     pageId,
   });
+  client.mutate([{ create: { _type: "bookingClient" } }], {});
   return data;
 };
 
@@ -132,4 +136,61 @@ export const getCustomerExpectation = async (pageId: string) => {
     }
   );
   return data;
+};
+
+export const addBookingClient = async (
+  prevState: {
+    success: boolean;
+    message: string;
+    errors: Record<string, string> | null | unknown;
+  },
+  form: FormData
+) => {
+  const body = {
+    name: form.get("name"),
+    phoneNumber: form.get("phoneNumber"),
+  };
+  const errors = validateForm(body);
+
+  if (Object.keys(errors).length) {
+    return {
+      message: "Form data failed",
+      success: false,
+      errors,
+    };
+  }
+
+  try {
+    const data = await client.withConfig({ token: writeToken }).mutate(
+      [
+        {
+          create: {
+            _type: "bookingClient",
+            name: body.name,
+            phoneNumber: body.phoneNumber,
+          },
+        },
+      ],
+      {
+        returnDocuments: true,
+
+        dryRun: true,
+      }
+    );
+
+    console.log(data);
+
+    return {
+      message: "Form data processed",
+      success: true,
+      errors: null,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      message: "Form data failed",
+      success: false,
+      errors: error,
+    };
+  }
 };

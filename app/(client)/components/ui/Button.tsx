@@ -9,10 +9,16 @@ interface Props
   variant: "primary" | "light" | "outline" | "dark";
 }
 
-const Button = ({ children, className, variant, ...props }: Props) => {
+const Button = ({
+  children,
+  className,
+  variant,
+  type = "button",
+  ...props
+}: Props) => {
   return (
     <button
-      type="button"
+      type={type}
       className={cn(buttonVariants({ variant, className }))}
       {...props}
     >

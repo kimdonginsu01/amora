@@ -1,23 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { HTMLAttributes, InputHTMLAttributes } from "react";
 import { ErrorIcon } from "./Icons";
 
-interface InputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  // value: string;
+  // onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   type?: string;
   isNumber?: boolean;
   name?: string;
   errorMessage?: string | null;
-  defaultValue?: string;
+  // defaultValue?: string;
 }
 
 export default function Input({
-  defaultValue,
-  value,
+  // defaultValue,
+  // value,
   className = "",
   type = "text",
   errorMessage,
@@ -25,11 +25,11 @@ export default function Input({
   onChange,
   ...props
 }: InputProps) {
-  const handleOnChange = (event: any) => {
-    if (onChange) {
-      onChange(event);
-    }
-  };
+  // const handleOnChange = (event: any) => {
+  //   if (onChange) {
+  //     onChange(event);
+  //   }
+  // };
 
   return (
     <div className={"font-red-hat"}>
@@ -38,7 +38,7 @@ export default function Input({
         className={
           " block w-full h-[62px] text-white text-[inherit] border bg-[#141215] transition-[0.35s] duration-[ease] px-5 py-0 border-solid border-[rgba(166,166,166,0.3)] focus:border-[#a28869] active:border-[#a28869]"
         }
-        onChange={handleOnChange}
+        // onChange={handleOnChange}
         {...props}
       />
 
