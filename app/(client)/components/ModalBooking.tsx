@@ -12,7 +12,7 @@ interface ModalProps {
   setOpenModal: (openModal: boolean) => void;
 }
 
-export default function Modal({ openModal, setOpenModal }: ModalProps) {
+export default function ModalBooking({ openModal, setOpenModal }: ModalProps) {
   const modalRef = useRef<any>();
   const [formErrors, setFormErrors] = useState<any>({});
   const [form, setForm] = useState({
@@ -54,7 +54,7 @@ export default function Modal({ openModal, setOpenModal }: ModalProps) {
           className="absolute flex items-center justify-center cursor-pointer right-2.5 top-2.5 p-2"
           onClick={handleClose}
         >
-          <CloseIcon className="w-6" color="#fff"/>
+          <CloseIcon className="w-6 h-6" color="#fff"/>
         </div>
         <div className="">
           <div className="text-center">

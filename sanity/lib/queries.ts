@@ -2,7 +2,8 @@ import { groq } from "next-sanity";
 
 export const homePageId = "d0ea95e0-4d11-4406-8cf5-01134ad272a1";
 export const servicePageId = "2611e23c-024e-4f0e-8969-307b29c95021";
-export const aboutUsPageId = "c2a8e1f5-0a1c-497c-9902-a1f71b669d3f"
+export const aboutUsPageId = "c2a8e1f5-0a1c-497c-9902-a1f71b669d3f";
+export const contactUsPageId = "96131158-5d92-499f-ace4-784a053b5d58";
 const whatsAppId = "524f47be-2f69-4eaf-9c36-80b5b172dba4";
 const phoneId = "5393bffa-ca82-41f1-9fdf-ff97825d6a3e";
 const addressId = "1b97844b-c2bb-4926-8cf7-21dc3c323e7c";
@@ -124,7 +125,7 @@ export const getHomePageTestimonialQuery = groq`
 `;
 
 export const getMenuQuery = groq`
-    *[_type == "menu"] {
+    *[_type == "menu"] | order(_createdAt asc) {
         title,
         slug,
     }
@@ -160,6 +161,17 @@ export const getCustomerExpectationQuery = groq`
     .pageBuilder[_type == "customerExpectation"][0] {
         heading,
         items[],
+    }
+`;
+
+export const getLocationQuery = groq`
+    *[_type == "page" && _id == $pageId][0]
+    .pageBuilder[_type == "location"][0] {
+        heading,
+        description,
+        contactInfos[]->,
+        items[],
+        embedMap,
     }
 `;
 

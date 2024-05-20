@@ -17,6 +17,7 @@ import { pageType } from "./schemas/pageType";
 import { serviceCard } from "./schemas/serviceCard";
 import { services } from "./schemas/services";
 import { testimonial } from "./schemas/testimonial";
+import { location } from "./schemas/location";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -33,6 +34,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     introduction,
     expectation,
     customerExpectation,
+    location,
 
     // Document
     pageType,

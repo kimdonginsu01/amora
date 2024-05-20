@@ -203,7 +203,23 @@ export type Page = {
     _key: string;
   } & Introduction) | ({
     _key: string;
-  } & CustomerExpectation)>;
+  } & CustomerExpectation) | ({
+    _key: string;
+  } & Location)>;
+};
+
+export type Location = {
+  _type: "location";
+  heading?: string;
+  description?: string;
+  contactInfos?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "contactInfo";
+  }>;
+  embedMap?: string;
 };
 
 export type CustomerExpectation = {
@@ -673,7 +689,7 @@ export type GetMainServiceQueryResult = {
 // Query:     *[_type == "page" && _id == "d0ea95e0-4d11-4406-8cf5-01134ad272a1"][0]    .pageBuilder[_type == "testimonial"][0] {        subHeading,        heading,        description,        testimonials[]-> {            clientName,            clientAvatar,            content,        }    }
 export type GetHomePageTestimonialQueryResult = null;
 // Variable: getMenuQuery
-// Query:     *[_type == "menu"] {        title,        slug,    }
+// Query:     *[_type == "menu"] | order(_createdAt asc) {        title,        slug,    }
 export type GetMenuQueryResult = Array<{
   title: string | null;
   slug: Slug | null;
@@ -695,9 +711,9 @@ export type GetHomePageContactInfoQueryResult = Array<{
   } | null;
   href: string | null;
 }>;
-// Variable: getServicesMinimalHeroQuery
-// Query:     *[_type == "page" && _id == "2611e23c-024e-4f0e-8969-307b29c95021"][0]    .pageBuilder[_type == "minimalHero"][0] {        image,        heading,    }
-export type GetServicesMinimalHeroQueryResult = {
+// Variable: getMinimalHeroQuery
+// Query:     *[_type == "page" && _id == $pageId][0]    .pageBuilder[_type == "minimalHero"][0] {        image,        heading,    }
+export type GetMinimalHeroQueryResult = {
   image: {
     asset?: {
       _ref: string;
@@ -711,6 +727,49 @@ export type GetServicesMinimalHeroQueryResult = {
     _type: "image";
   } | null;
   heading: string | null;
+} | null;
+// Variable: getIntroductionQuery
+// Query:     *[_type == "page" && _id == $pageId][0]    .pageBuilder[_type == "introduction"][0] {        image,        heading,        body,    }
+export type GetIntroductionQueryResult = {
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  heading: string | null;
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+} | null;
+// Variable: getCustomerExpectationQuery
+// Query:     *[_type == "page" && _id == $pageId][0]    .pageBuilder[_type == "customerExpectation"][0] {        heading,        items[],    }
+export type GetCustomerExpectationQueryResult = {
+  heading: string | null;
+  items: Array<{
+    _key: string;
+  } & ExpectationItem> | null;
 } | null;
 // Variable: getServiceDetailsQuery
 // Query:     *[_type == "serviceCard" && slug.current == $slug][0] {        title,        image,        excerpt,        body,        pricings[] {            time,            price        }    }

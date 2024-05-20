@@ -16,7 +16,7 @@ interface Props {
 }
 
 const Header = ({ menus }: Props) => {
-  const [hideOnScroll, setHideOnScroll] = useState(false);
+  const [hideOnScroll, setHideOnScroll] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenMenu = () => {

@@ -1,4 +1,8 @@
-import { getCustomerExpectation, getIntroduction, getMinimalHero } from "@/sanity/lib/api";
+import {
+  getCustomerExpectation,
+  getIntroduction,
+  getMinimalHero,
+} from "@/sanity/lib/api";
 import { aboutUsPageId } from "@/sanity/lib/queries";
 import { Image } from "sanity";
 import CutomerExpectation from "../components/CutomerExpectation";
@@ -12,7 +16,10 @@ const AboutUsPage = async () => {
 
   return (
     <div>
-      <MinimalHero image={minimalHero.image as Image} heading={minimalHero.heading ?? ""}  />
+      <MinimalHero
+        image={minimalHero.image as Image}
+        heading={minimalHero.heading ?? ""}
+      />
       <Introduction data={introduction} />
       <CutomerExpectation data={customerExpectation} />
     </div>

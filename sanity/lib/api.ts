@@ -5,6 +5,7 @@ import {
   FooterBanner,
   Hero,
   Introduction,
+  Location,
   MainTestimonial,
   Menu,
   MinimalHero,
@@ -95,6 +96,13 @@ export const getHomePageContactInfo = async () => {
 
 export const getMinimalHero = async (pageId: string) => {
   const data = await client.fetch<MinimalHero>(queries.getMinimalHeroQuery, {
+    pageId,
+  });
+  return data;
+};
+
+export const getLocation = async (pageId: string) => {
+  const data = await client.fetch<Location>(queries.getLocationQuery, {
     pageId,
   });
   return data;

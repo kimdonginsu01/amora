@@ -47,6 +47,10 @@ export const pageType = defineType({
           name: "customerExpectation",
           type: "customerExpectation",
         }),
+        defineArrayMember({
+          name: "location",
+          type: "location",
+        }),
         // defineArrayMember({
         //   name: "callToAction",
         //   type: "reference",
