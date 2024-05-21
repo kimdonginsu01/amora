@@ -173,8 +173,6 @@ export const addBookingClient = async (
       ],
       {
         returnDocuments: true,
-
-        dryRun: true,
       }
     );
 

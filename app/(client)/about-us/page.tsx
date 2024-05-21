@@ -8,6 +8,11 @@ import { Image } from "sanity";
 import CutomerExpectation from "../components/CutomerExpectation";
 import Introduction from "../components/Introduction";
 import MinimalHero from "../components/MinimalHero";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About us",
+};
 
 const AboutUsPage = async () => {
   const minimalHero = await getMinimalHero(aboutUsPageId);

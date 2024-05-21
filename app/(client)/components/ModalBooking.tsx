@@ -1,13 +1,13 @@
 "use client";
 
 import useClickOutside from "@/app/hooks/useClickOutside";
-import { LegacyRef, MutableRefObject, RefAttributes, useEffect, useRef, useState } from "react";
-import { validateForm } from "../utils/cn";
+import { addBookingClient } from "@/sanity/lib/api";
+import { useRouter } from "next/navigation";
+import { LegacyRef, useEffect, useRef, useState } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 import { CloseIcon } from "./Icons";
 import Input from "./Input";
 import Button from "./ui/Button";
-import { addBookingClient } from "@/sanity/lib/api";
-import { useFormState, useFormStatus } from "react-dom";
 
 interface ModalProps {
   openModal: boolean;
@@ -15,6 +15,7 @@ interface ModalProps {
 }
 
 export default function ModalBooking({ openModal, setOpenModal }: ModalProps) {
+  const router = useRouter();
   const modalRef: LegacyRef<HTMLDivElement> = useRef(null);
   const [state, action] = useFormState(addBookingClient, {
     message: "",
@@ -52,7 +53,7 @@ export default function ModalBooking({ openModal, setOpenModal }: ModalProps) {
         >
           <CloseIcon className="w-6 h-6" color="#fff" />
         </div>
-        {!state.success && (
+        {!state.success ? (
           <form action={action}>
             <div className="text-center">
               <h4 className="text-[26px] text-primary">Booking now</h4>
@@ -88,6 +89,19 @@ export default function ModalBooking({ openModal, setOpenModal }: ModalProps) {
               </Button>
             </div>
           </form>
+        ) : (
+          <div>
+            <p className="text-xl text-center">
+              Thank you for reaching out. We will contact you soon!
+            </p>
+            <Button
+              variant="primary"
+              className="w-full mt-6"
+              onClick={() => router.push("/")}
+            >
+              Return to home page
+            </Button>
+          </div>
         )}
       </div>
     </div>

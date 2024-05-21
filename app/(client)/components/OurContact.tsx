@@ -22,10 +22,10 @@ const OurContact = ({ data }: Props) => {
               (data.contactInfos as unknown as ContactInfo[]).map(
                 (item, idx) => (
                   <div
-                    className="px-8 py-4 border-solid border-[1px] border-[#5A5A5A] gap-[20px]"
+                    className="px-8 py-4 border-solid border-[1px] border-[#5A5A5A] gap-[20px] flex flex-wrap items-center"
                     key={idx}
                   >
-                    <div className="inline-block mr-4">
+                    <div className="inline-block">
                       <div className="w-14 h-14 bg-light-dark flex item-center justify-center">
                         {item.icon?.asset && (
                           <Image
