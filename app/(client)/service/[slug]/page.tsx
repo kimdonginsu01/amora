@@ -1,8 +1,16 @@
 import { ServiceCard } from "@/sanity.types";
-import { getHomePageContactInfo, getServiceDetails } from "@/sanity/lib/api";
+import { getHomePageContactInfo, getServiceDetails, getServices } from "@/sanity/lib/api";
 import { Image } from "sanity";
 import { InformationService } from "../../components/InformationService";
 import MinimalHero from "../../components/MinimalHero";
+
+export async function generateStaticParams() {
+  const services = await getServices();
+
+  return services.map((service) => ({
+    slug: service?.slug?.current,
+  }));
+}
 
 interface Props {
   params: { slug: string };

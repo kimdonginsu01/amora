@@ -90,6 +90,12 @@ export const getPopularServicesQuery = groq`
     }
 `;
 
+export const getServiceQuery = groq`
+    *[_type == "serviceCard"] {
+        slug
+    }
+`
+
 export const getMainServiceQuery = groq`
     {
         "headings": *[_type == "page" && _id == "${servicePageId}"][0]

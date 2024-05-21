@@ -11,11 +11,11 @@ const MainServices = async () => {
   return (
     <SectionWrapper variant="black">
     <SectionHeading
-        subHeading={headings.subHeading ?? ""}
-        heading={headings.heading ?? ""}
+        subHeading={headings?.subHeading ?? ""}
+        heading={headings?.heading ?? ""}
       />
       <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5">
-        {services &&
+        {services.length &&
           services.map((service, index) => (
             <ServiceCard
               key={index}

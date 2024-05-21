@@ -7,5 +7,5 @@ export const client = createClient({
   dataset,
   projectId,
   useCdn,
-  // token: writeToken,
+  token: writeToken,
 });

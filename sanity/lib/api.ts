@@ -64,11 +64,15 @@ export const getPopularServices = async () => {
   return data;
 };
 
+export const getServices = async () => {
+  const data = await client.fetch<ServiceCard[]>(queries.getServiceQuery, {});
+  return data;
+};
+
 export const getMainServices = async () => {
   const data = await client.fetch<{ headings: any; services: Services[] }>(
     queries.getMainServiceQuery,
     {},
-    { cache: "no-cache" }
   );
   return data;
 };
@@ -161,7 +165,7 @@ export const addBookingClient = async (
   }
 
   try {
-    const data = await client.withConfig({ token: writeToken }).mutate(
+    const data = await client.mutate(
       [
         {
           create: {
@@ -183,7 +187,7 @@ export const addBookingClient = async (
       success: true,
       errors: null,
     };
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
     return {
       message: "Form data failed",
