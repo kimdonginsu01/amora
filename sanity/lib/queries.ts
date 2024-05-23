@@ -185,6 +185,7 @@ export const getServiceDetailsQuery = groq`
     *[_type == "serviceCard" && slug.current == $slug][0] {
         title,
         image,
+        "ogImage": image.asset->url,
         excerpt,
         body,
         pricings[] {
@@ -193,3 +194,24 @@ export const getServiceDetailsQuery = groq`
         }
     }
 `;
+
+export const getSiteMetaQuery = groq`
+    *[_type=="siteMeta" && linkToPage._ref == $pageId][0] {
+        pageTitle,
+        description,
+        "canonical": url,
+        isGoogleAnalyticsEnabled,
+        isPwa,
+        "openGraph": {
+            "basic": { 
+                "title": pageTitle,
+                url,
+                "image": ogImage.asset->url
+            },
+            "optional": {
+                site_name,
+                description
+            }
+        }
+    }
+`

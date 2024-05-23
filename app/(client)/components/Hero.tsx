@@ -36,7 +36,7 @@ const Hero = async () => {
           <h1 className="font-semibold text-4xl md:text-5xl leading-hero-title">
             {data?.heading}
           </h1>
-          <h3 className="font-red-hat md:text-lg mt-3">{data?.subHeading}</h3>
+          <h2 className="font-red-hat md:text-lg mt-3">{data?.subHeading}</h2>
           <div className="mt-8 flex flex-wrap justify-center md:justify-start space-x-6">
             {data.buttons?.map((btn, index) => (
               <Link

@@ -68,6 +68,50 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type SiteMeta = {
+  _id: string;
+  _type: "siteMeta";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  site_name?: string;
+  linkToPage?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "page";
+  };
+  ogDescription?: string;
+  url?: string;
+  pageTitle?: string;
+  ogImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  description?: string;
+  isPwa?: boolean;
+  isGoogleAnalyticsEnabled?: boolean;
+  googleanalyticsId?: string;
+  googleSiteVerificationId?: string;
+};
+
+export type BookingClient = {
+  _id: string;
+  _type: "bookingClient";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  phoneNumber?: string;
+};
+
 export type FooterBanner = {
   _id: string;
   _type: "footerBanner";
@@ -206,6 +250,27 @@ export type Page = {
   } & CustomerExpectation) | ({
     _key: string;
   } & Location)>;
+};
+
+export type Locale = "en-US" | "en-GB" | "fr-FR";
+
+export type OpenGraph = {
+  _type: "openGraph";
+  site_name?: string;
+  ogDescription?: string;
+  url?: string;
+  ogTitle?: string;
+  ogImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type Location = {
@@ -657,6 +722,11 @@ export type GetPopularServicesQueryResult = {
     }> | null;
   }> | null;
 } | null;
+// Variable: getServiceQuery
+// Query:     *[_type == "serviceCard"] {        slug    }
+export type GetServiceQueryResult = Array<{
+  slug: Slug | null;
+}>;
 // Variable: getMainServiceQuery
 // Query:     {        "headings": *[_type == "page" && _id == "2611e23c-024e-4f0e-8969-307b29c95021"][0]                        .pageBuilder[_type == "mainServices"][0] {            subHeading,            heading,        },        "services": *[_type == "serviceCard"] {            image,            title,            slug,            excerpt,            pricings[] {                time,                price            }        }    }
 export type GetMainServiceQueryResult = {
@@ -771,8 +841,39 @@ export type GetCustomerExpectationQueryResult = {
     _key: string;
   } & ExpectationItem> | null;
 } | null;
+// Variable: getLocationQuery
+// Query:     *[_type == "page" && _id == $pageId][0]    .pageBuilder[_type == "location"][0] {        heading,        description,        contactInfos[]->,        items[],        embedMap,    }
+export type GetLocationQueryResult = {
+  heading: string | null;
+  description: string | null;
+  contactInfos: Array<{
+    _id: string;
+    _type: "contactInfo";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    icon?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    withAction?: boolean;
+    details?: Array<string>;
+    href?: string;
+    isSocial?: boolean;
+  }> | null;
+  items: null;
+  embedMap: string | null;
+} | null;
 // Variable: getServiceDetailsQuery
-// Query:     *[_type == "serviceCard" && slug.current == $slug][0] {        title,        image,        excerpt,        body,        pricings[] {            time,            price        }    }
+// Query:     *[_type == "serviceCard" && slug.current == $slug][0] {        title,        image,        "ogImage": image.asset->url,        excerpt,        body,        pricings[] {            time,            price        }    }
 export type GetServiceDetailsQueryResult = {
   title: string | null;
   image: {
@@ -786,6 +887,7 @@ export type GetServiceDetailsQueryResult = {
     crop?: SanityImageCrop;
     _type: "image";
   } | null;
+  ogImage: string | null;
   excerpt: string | null;
   body: Array<{
     children?: Array<{
@@ -809,5 +911,25 @@ export type GetServiceDetailsQueryResult = {
     time: number | null;
     price: number | null;
   }> | null;
+} | null;
+// Variable: getSiteMetaQuery
+// Query:     *[_type=="siteMeta" && linkToPage._ref == $pageId][0] {        pageTitle,        description,        "canonical": url,        isGoogleAnalyticsEnabled,        isPwa,        "openGraph": {            "basic": {                 "title": pageTitle,                url,                "image": ogImage.asset->url            },            "optional": {                site_name,                description            }        }    }
+export type GetSiteMetaQueryResult = {
+  pageTitle: string | null;
+  description: string | null;
+  canonical: string | null;
+  isGoogleAnalyticsEnabled: boolean | null;
+  isPwa: boolean | null;
+  openGraph: {
+    basic: {
+      title: string | null;
+      url: string | null;
+      image: string | null;
+    };
+    optional: {
+      site_name: string | null;
+      description: string | null;
+    };
+  };
 } | null;
 

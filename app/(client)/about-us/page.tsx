@@ -1,18 +1,40 @@
+import { baseOpenGraph } from "@/app/shared-metadata";
 import {
   getCustomerExpectation,
   getIntroduction,
   getMinimalHero,
+  getSiteMeta,
 } from "@/sanity/lib/api";
 import { aboutUsPageId } from "@/sanity/lib/queries";
+import { Metadata } from "next";
 import { Image } from "sanity";
 import CutomerExpectation from "../components/CutomerExpectation";
 import Introduction from "../components/Introduction";
 import MinimalHero from "../components/MinimalHero";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "About us",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const siteMeta = await getSiteMeta(aboutUsPageId);
+
+  return {
+    title: siteMeta?.pageTitle,
+    description: siteMeta?.description,
+    openGraph: {
+      ...baseOpenGraph,
+      title: `${siteMeta?.pageTitle}`,
+      description: `${siteMeta?.description}`,
+      url: `${siteMeta?.openGraph.basic.url}`,
+      siteName: `${siteMeta?.openGraph.optional.site_name}`,
+      images: [
+        {
+          url: `${siteMeta?.openGraph.basic.image}`,
+        },
+      ],
+    },
+    alternates: {
+      canonical: siteMeta?.canonical,
+    },
+  };
+}
 
 const AboutUsPage = async () => {
   const minimalHero = await getMinimalHero(aboutUsPageId);

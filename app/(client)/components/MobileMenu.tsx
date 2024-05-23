@@ -44,6 +44,7 @@ const MobileMenu = ({
             <Link
               href={`/${item.slug?.current}` ?? "#"}
               className="block p-2 text-xl"
+              onClick={handleCloseMenu}
             >
               {item.title}
             </Link>

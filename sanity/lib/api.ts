@@ -1,8 +1,11 @@
+import { validateForm } from "@/app/(client)/utils/cn";
 import {
   AboutUs,
   ContactInfo,
   CustomerExpectation,
   FooterBanner,
+  GetServiceDetailsQueryResult,
+  GetSiteMetaQueryResult,
   Hero,
   Introduction,
   Location,
@@ -12,12 +15,10 @@ import {
   Offers,
   ServiceCard,
   Services,
+  SiteMeta,
 } from "@/sanity.types";
 import * as queries from "@/sanity/lib/queries";
 import { client } from "./client";
-import { FormState } from "sanity";
-import { validateForm } from "@/app/(client)/utils/cn";
-import { writeToken } from "../env";
 
 export const getMenus = async () => {
   const menu = await client.fetch<Menu[]>(queries.getMenuQuery, {});
@@ -72,7 +73,7 @@ export const getServices = async () => {
 export const getMainServices = async () => {
   const data = await client.fetch<{ headings: any; services: Services[] }>(
     queries.getMainServiceQuery,
-    {},
+    {}
   );
   return data;
 };
@@ -117,7 +118,7 @@ export const getLocation = async (pageId: string) => {
 };
 
 export const getServiceDetails = async (slug: string) => {
-  const data = await client.fetch<ServiceCard>(
+  const data = await client.fetch<GetServiceDetailsQueryResult>(
     queries.getServiceDetailsQuery,
     { slug },
     { cache: "no-cache" }
@@ -195,4 +196,14 @@ export const addBookingClient = async (
       errors: error,
     };
   }
+};
+
+export const getSiteMeta = async (pageId: string) => {
+  const data = await client.fetch<GetSiteMetaQueryResult>(
+    queries.getSiteMetaQuery,
+    {
+      pageId,
+    }
+  );
+  return data;
 };
