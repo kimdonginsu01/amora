@@ -6,6 +6,7 @@ export const pageType = defineType({
   title: "Page",
   fields: [
     defineField({ name: "title", type: "string" }),
+    defineField({ name: "slug", type: "slug" }),
     defineField({
       name: "pageBuilder",
       type: "array",
@@ -51,11 +52,6 @@ export const pageType = defineType({
           name: "location",
           type: "location",
         }),
-        // defineArrayMember({
-        //   name: "callToAction",
-        //   type: "reference",
-        //   to: [{ type: "promotion" }],
-        // }),
       ],
       validation: (rule) => rule.required().min(1),
     }),

@@ -92,9 +92,17 @@ export const getPopularServicesQuery = groq`
 
 export const getServiceQuery = groq`
     *[_type == "serviceCard"] {
-        slug
+        slug,
+        _updatedAt,
     }
-`
+`;
+
+export const getPageSlugQuery = groq`
+    *[_type == "page"] {
+        slug,
+        _updatedAt,
+    }
+`;
 
 export const getMainServiceQuery = groq`
     {
@@ -214,4 +222,4 @@ export const getSiteMetaQuery = groq`
             }
         }
     }
-`
+`;

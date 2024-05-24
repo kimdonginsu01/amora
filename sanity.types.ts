@@ -229,6 +229,7 @@ export type Page = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  slug?: Slug;
   pageBuilder?: Array<({
     _key: string;
   } & Hero) | ({
@@ -723,9 +724,16 @@ export type GetPopularServicesQueryResult = {
   }> | null;
 } | null;
 // Variable: getServiceQuery
-// Query:     *[_type == "serviceCard"] {        slug    }
+// Query:     *[_type == "serviceCard"] {        slug,        _updatedAt,    }
 export type GetServiceQueryResult = Array<{
   slug: Slug | null;
+  _updatedAt: string;
+}>;
+// Variable: getPageSlugQuery
+// Query:     *[_type == "page"] {        slug,        _updatedAt,    }
+export type GetPageSlugQueryResult = Array<{
+  slug: Slug | null;
+  _updatedAt: string;
 }>;
 // Variable: getMainServiceQuery
 // Query:     {        "headings": *[_type == "page" && _id == "2611e23c-024e-4f0e-8969-307b29c95021"][0]                        .pageBuilder[_type == "mainServices"][0] {            subHeading,            heading,        },        "services": *[_type == "serviceCard"] {            image,            title,            slug,            excerpt,            pricings[] {                time,                price            }        }    }

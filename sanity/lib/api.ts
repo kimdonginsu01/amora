@@ -4,6 +4,7 @@ import {
   ContactInfo,
   CustomerExpectation,
   FooterBanner,
+  GetPageSlugQueryResult,
   GetServiceDetailsQueryResult,
   GetSiteMetaQueryResult,
   Hero,
@@ -60,6 +61,14 @@ export const getHomePageOffer = async () => {
 export const getPopularServices = async () => {
   const data = await client.fetch<Services>(
     queries.getPopularServicesQuery,
+    {}
+  );
+  return data;
+};
+
+export const getPageSlug = async () => {
+  const data = await client.fetch<GetPageSlugQueryResult>(
+    queries.getPageSlugQuery,
     {}
   );
   return data;
