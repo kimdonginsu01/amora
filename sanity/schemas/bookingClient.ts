@@ -8,5 +8,7 @@ export const bookingClient = defineType({
   fields: [
     defineField({ name: "name", title: "Name", type: "string" }),
     defineField({ name: "phoneNumber", title: "Phone number", type: "string" }),
+    defineField({ name: "country", title: "Country", type: "string" }),
+    defineField({ name: "visitPurpose", title: "Visit purpose", type: "string" }),
   ],
 });

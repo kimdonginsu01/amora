@@ -79,6 +79,22 @@ export default function ModalBooking({ openModal, setOpenModal }: ModalProps) {
               />
             </div>
             <div className="mt-5">
+              <Input
+                placeholder="Country"
+                errorMessage={formErrors?.country}
+                name="country"
+                id="country"
+              />
+            </div>
+            <div className="mt-5">
+              <Input
+                placeholder="What do you come here for?"
+                errorMessage={formErrors?.visitPurpose}
+                name="visitPurpose"
+                id="visitPurpose"
+              />
+            </div>
+            <div className="mt-5">
               <Button
                 type="submit"
                 variant="primary"

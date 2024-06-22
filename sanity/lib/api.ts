@@ -163,6 +163,8 @@ export const addBookingClient = async (
   const body = {
     name: form.get("name"),
     phoneNumber: form.get("phoneNumber"),
+    country: form.get("country"),
+    visitPurpose: form.get("visitPurpose"),
   };
   const errors = validateForm(body);
 
@@ -175,13 +177,15 @@ export const addBookingClient = async (
   }
 
   try {
-    const data = await client.mutate(
+    await client.mutate(
       [
         {
           create: {
             _type: "bookingClient",
             name: body.name,
             phoneNumber: body.phoneNumber,
+            country: body.country,
+            visitPurpose: body.visitPurpose,
           },
         },
       ],
@@ -189,8 +193,6 @@ export const addBookingClient = async (
         returnDocuments: true,
       }
     );
-
-    console.log(data);
 
     return {
       message: "Form data processed",
