@@ -16,6 +16,11 @@ export const writeToken = assertValue(
   'Missing environment variable: NEXT_PUBLIC_SANITY_WRITE_TOKEN'
 )
 
+export const vercelDeployHook = assertValue(
+  process.env.NEXT_PUBLIC_VERCEL_DEPLOY_HOOK,
+  'Missing environment variable: NEXT_PUBLIC_VERCEL_DEPLOY_HOOK'
+)
+
 export const useCdn = false
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
